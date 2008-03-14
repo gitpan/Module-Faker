@@ -1,0 +1,27 @@
+Changes
+eg/MetaVersion.yaml
+eg/ProvidesInner.yaml
+eg/SimplePrereq.yaml
+inc/Module/Install.pm
+inc/Module/Install/AuthorTests.pm
+inc/Module/Install/Base.pm
+inc/Module/Install/Can.pm
+inc/Module/Install/Fetch.pm
+inc/Module/Install/Makefile.pm
+inc/Module/Install/Metadata.pm
+inc/Module/Install/Win32.pm
+inc/Module/Install/WriteAll.pm
+lib/Module/Faker.pm
+lib/Module/Faker/Dist.pm
+lib/Module/Faker/File.pm
+lib/Module/Faker/Heavy.pm
+lib/Module/Faker/Module.pm
+lib/Module/Faker/Package.pm
+LICENSE
+Makefile.PL
+MANIFEST			This list of files
+META.yml
+README
+t/basic.t
+xt/pod-coverage.t
+xt/pod.t
