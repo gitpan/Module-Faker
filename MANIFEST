@@ -1,6 +1,8 @@
 Changes
+eg/Lacks-META.yaml
 eg/MetaVersion.yaml
 eg/ProvidesInner.yaml
+eg/RJBS-Dist.yaml
 eg/SimplePrereq.yaml
 inc/Module/Install.pm
 inc/Module/Install/AuthorTests.pm
@@ -23,5 +25,6 @@ MANIFEST			This list of files
 META.yml
 README
 t/basic.t
+t/omit-file.t
 xt/pod-coverage.t
 xt/pod.t

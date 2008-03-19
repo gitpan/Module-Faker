@@ -1,7 +1,7 @@
 package Module::Faker::Dist;
 use Moose;
 
-our $VERSION = '0.003';
+our $VERSION = '0.004';
 
 use Module::Faker::File;
 use Module::Faker::Heavy;
@@ -173,6 +173,12 @@ sub files {
 
 sub _file_class { 'Module::Faker::File' }
 
+has omitted_files => (
+  is   => 'ro',
+  isa  => 'ArrayRef[Str]',
+  auto_deref => 1,
+);
+
 has requires => (
   is   => 'ro',
   isa  => 'HashRef',
@@ -209,6 +215,7 @@ has _extras => (
     my @files;
 
     for my $filename (qw(Makefile.PL META.yml t/00-nop.t)) {
+      next if grep { $_ eq $filename } $self->omitted_files;
       push @files, $self->_file_class->new({
         filename => $filename,
         content  => Module::Faker::Heavy->_render(
@@ -231,7 +238,7 @@ my %HANDLER_FOR = (
 sub from_file {
   my ($self, $filename) = @_;
 
-  my ($ext) = $filename =~ /\.(.+?)\z/;
+  my ($ext) = $filename =~ /.*\.(.+?)\z/;
 
   Carp::croak "don't know how to handle file $filename"
     unless $ext and my $method = $HANDLER_FOR{$ext};
@@ -243,7 +250,8 @@ sub _from_yaml_file {
   my ($self, $filename) = @_;
 
   my $data = YAML::Syck::LoadFile($filename);
-  my $dist = $self->new($data);
+  my $extra = (delete $data->{Faker}) || {};
+  my $dist = $self->new({ %$data, %$extra });
 }
 
 1;

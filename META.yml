@@ -3,7 +3,7 @@ abstract: build fake dists for testing CPAN tools
 author: 
   - Ricardo Signes <rjbs@cpan.org>
 distribution_type: module
-generated_by: Module::Install version 0.68
+generated_by: Module::Install version 0.69
 license: perl
 meta-spec: 
   url: http://module-build.sourceforge.net/META-spec-v1.3.html
@@ -19,9 +19,9 @@ requires:
   File::Path: 0
   File::Spec: 0
   File::Temp: 0
-  Moose: 0
+  Moose: 0.33
   Text::Template: 0
   YAML::Syck: 0
   perl: 5.8.0
 tests: t/*.t xt/*.t
-version: 0.003
+version: 0.004
