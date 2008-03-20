@@ -1,9 +1,10 @@
 Changes
 eg/Lacks-META.yaml
-eg/MetaVersion.yaml
-eg/ProvidesInner.yaml
+eg/Mostly-Auto.yaml
+eg/Provides-Inner-Sorted.yaml
+eg/Provides-Inner.yaml
 eg/RJBS-Dist.yaml
-eg/SimplePrereq.yaml
+eg/Simple-Prereq.yaml
 inc/Module/Install.pm
 inc/Module/Install/AuthorTests.pm
 inc/Module/Install/Base.pm
@@ -26,5 +27,6 @@ META.yml
 README
 t/basic.t
 t/omit-file.t
+t/provide-order.t
 xt/pod-coverage.t
 xt/pod.t
