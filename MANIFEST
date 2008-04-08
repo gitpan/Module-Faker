@@ -28,5 +28,6 @@ README
 t/basic.t
 t/omit-file.t
 t/provide-order.t
+t/requires.t
 xt/pod-coverage.t
 xt/pod.t
