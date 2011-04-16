@@ -2,22 +2,61 @@
 use strict;
 use warnings;
 
-use inc::Module::Install;
+BEGIN { require 5.10.0; }
 
-name          ('Module-Faker');
-author        ('Ricardo Signes <rjbs@cpan.org>');
-license       ('perl');
-all_from      ('lib/Module/Faker.pm');
+use ExtUtils::MakeMaker 6.31;
 
-requires('Archive::Any::Create'      => 0.000); # minimum unknown
-requires('File::Next'                => 0.000); # minimum unknown
-requires('File::Path'                => 0.000); # minimum unknown
-requires('File::Spec'                => 0.000); # minimum unknown
-requires('File::Temp'                => 0.000); # minimum unknown
-requires('Moose',                    => 0.33 ); # param. containers
-requires('Text::Template'            => 0.000); # minimum unknown
-requires('YAML::Syck'                => 0.000); # minimum unknown
 
-author_tests('xt');
 
-WriteAll();
+my %WriteMakefileArgs = (
+  'ABSTRACT' => 'build fake dists for testing CPAN tools',
+  'AUTHOR' => 'Ricardo Signes <rjbs@cpan.org>',
+  'BUILD_REQUIRES' => {
+    'Test::More' => '0.96'
+  },
+  'CONFIGURE_REQUIRES' => {
+    'ExtUtils::MakeMaker' => '6.31'
+  },
+  'DISTNAME' => 'Module-Faker',
+  'EXE_FILES' => [],
+  'LICENSE' => 'perl',
+  'NAME' => 'Module::Faker',
+  'PREREQ_PM' => {
+    'Archive::Any::Create' => '0',
+    'Carp' => '0',
+    'File::Next' => '0',
+    'File::Path' => '0',
+    'File::Temp' => '0',
+    'Moose' => '0.33',
+    'Moose::Util::TypeConstraints' => '0',
+    'Parse::CPAN::Meta' => '1.4401',
+    'Text::Template' => '0',
+    'YAML::Syck' => '0'
+  },
+  'VERSION' => '0.007',
+  'test' => {
+    'TESTS' => 't/*.t'
+  }
+);
+
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
+  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
+  my $pp = $WriteMakefileArgs{PREREQ_PM};
+  for my $mod ( keys %$br ) {
+    if ( exists $pp->{$mod} ) {
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
+    }
+    else {
+      $pp->{$mod} = $br->{$mod};
+    }
+  }
+}
+
+delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+
+WriteMakefile(%WriteMakefileArgs);
+
+
+

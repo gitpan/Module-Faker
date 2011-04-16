@@ -1,7 +1,8 @@
 package Module::Faker::Package;
+BEGIN {
+  $Module::Faker::Package::VERSION = '0.007';
+}
 use Moose;
-
-our $VERSION = '0.006';
 
 use Moose::Util::TypeConstraints;
 
@@ -32,7 +33,7 @@ coerce 'Module::Faker::Type::Packages'
 
     my @pkg_names = do {
       no warnings 'uninitialized';
-      sort { $href->{$a}{Faker}{order} <=> $href->{$b}{Faker}{order} } keys %$href;
+      sort { $href->{$a}{X_Module_Faker}{order} <=> $href->{$b}{X_Module_Faker}{order} } keys %$href;
     };
 
     for my $name (@pkg_names) {
@@ -47,3 +48,28 @@ coerce 'Module::Faker::Type::Packages'
 
 no Moose;
 1;
+
+__END__
+=pod
+
+=head1 NAME
+
+Module::Faker::Package
+
+=head1 VERSION
+
+version 0.007
+
+=head1 AUTHOR
+
+Ricardo Signes <rjbs@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2008 by Ricardo Signes.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+

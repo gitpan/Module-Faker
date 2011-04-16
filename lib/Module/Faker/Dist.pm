@@ -1,7 +1,9 @@
 package Module::Faker::Dist;
+BEGIN {
+  $Module::Faker::Dist::VERSION = '0.007';
+}
 use Moose;
-
-our $VERSION = '0.006';
+use 5.10.0;
 
 use Module::Faker::File;
 use Module::Faker::Heavy;
@@ -11,9 +13,8 @@ use Module::Faker::Module;
 use Archive::Any::Create;
 use File::Temp ();
 use File::Path ();
+use Parse::CPAN::Meta 1.4401;
 use YAML::Syck ();
-
-sub __dor { defined $_[0] ? $_[0] : $_[1] }
 
 has name         => (is => 'ro', isa => 'Str', required => 1);
 has version      => (is => 'ro', isa => 'Maybe[Str]', default => '0.01');
@@ -27,7 +28,7 @@ has archive_basename => (
   lazy => 1,
   default => sub {
     my ($self) = @_;
-    return sprintf '%s-%s', $self->name, __dor($self->version, 'undef');
+    return sprintf '%s-%s', $self->name, $self->version // 'undef';
   },
 );
 
@@ -122,7 +123,7 @@ sub _author_dir_infix {
 
   Carp::croak "can't put archive in author dir with no author defined"
     unless my $pauseid = $self->cpan_author;
-  
+
   # Sorta like pow- pow- power-wheels! -- rjbs, 2008-03-14
   my ($pa, $p) = $pauseid =~ /^((.).)/;
   return ($p, $pa, $pauseid);
@@ -204,7 +205,7 @@ has _manifest_file => (
     });
   },
 );
-    
+
 has _extras => (
   is   => 'ro',
   isa  => 'ArrayRef[Module::Faker::File]',
@@ -231,8 +232,9 @@ has _extras => (
 
 # TODO: make this a registry -- rjbs, 2008-03-12
 my %HANDLER_FOR = (
-  yaml => '_from_yaml_file',
-  yml  => '_from_yaml_file',
+  yaml => '_from_meta_file',
+  yml  => '_from_meta_file',
+  json => '_from_meta_file',
 );
 
 sub from_file {
@@ -246,12 +248,37 @@ sub from_file {
   $self->$method($filename);
 }
 
-sub _from_yaml_file {
+sub _from_meta_file {
   my ($self, $filename) = @_;
 
-  my $data = YAML::Syck::LoadFile($filename);
-  my $extra = (delete $data->{Faker}) || {};
+  my $data = Parse::CPAN::Meta->load_file($filename);
+  my $extra = (delete $data->{X_Module_Faker}) || {};
   my $dist = $self->new({ %$data, %$extra });
 }
 
 1;
+
+__END__
+=pod
+
+=head1 NAME
+
+Module::Faker::Dist
+
+=head1 VERSION
+
+version 0.007
+
+=head1 AUTHOR
+
+Ricardo Signes <rjbs@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2008 by Ricardo Signes.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+

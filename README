@@ -1,4 +1,13 @@
 
-Module-Faker contains tools for building fake CPAN distributions for testing.
-For more information, consult the inline POD (documentation).
+
+This archive contains the distribution Module-Faker,
+version 0.007:
+
+  build fake dists for testing CPAN tools
+
+This software is copyright (c) 2008 by Ricardo Signes.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
 
