@@ -11,6 +11,7 @@ eg/Mostly-Auto.yml
 eg/Provides-Inner-Sorted.yml
 eg/Provides-Inner.yml
 eg/RJBS-Dist.yml
+eg/RJBS_Another-Dist-1.24.tar.gz.dist
 eg/Simple-Prereq.yml
 lib/Module/Faker.pm
 lib/Module/Faker/Dist.pm

@@ -1,6 +1,6 @@
 package Module::Faker::Dist;
 BEGIN {
-  $Module::Faker::Dist::VERSION = '0.007';
+  $Module::Faker::Dist::VERSION = '0.008';
 }
 use Moose;
 use 5.10.0;
@@ -11,10 +11,11 @@ use Module::Faker::Package;
 use Module::Faker::Module;
 
 use Archive::Any::Create;
+use CPAN::DistnameInfo;
 use File::Temp ();
 use File::Path ();
 use Parse::CPAN::Meta 1.4401;
-use YAML::Syck ();
+use Path::Class;
 
 has name         => (is => 'ro', isa => 'Str', required => 1);
 has version      => (is => 'ro', isa => 'Maybe[Str]', default => '0.01');
@@ -33,10 +34,14 @@ has archive_basename => (
 );
 
 has authors => (
-  is  => 'ro',
-  isa => 'ArrayRef[Str]',
-  auto_deref => 1,
-  default    => sub { [ 'Local Author <local@cpan.local>' ] },
+  isa  => 'ArrayRef[Str]',
+  lazy => 1,
+  traits  => [ 'Array' ],
+  handles => { authors => 'elements' },
+  default => sub {
+    my ($self) = @_;
+    return [ sprintf '%s <%s@cpan.local>', ($self->cpan_author) x 2 ];
+  },
 );
 
 sub __dist_to_pkg { my $str = shift; $str =~ s/-/::/g; return $str; }
@@ -235,6 +240,7 @@ my %HANDLER_FOR = (
   yaml => '_from_meta_file',
   yml  => '_from_meta_file',
   json => '_from_meta_file',
+  dist => '_from_distnameinfo'
 );
 
 sub from_file {
@@ -246,6 +252,24 @@ sub from_file {
     unless $ext and my $method = $HANDLER_FOR{$ext};
 
   $self->$method($filename);
+}
+
+sub _from_distnameinfo {
+  my ($self, $filename) = @_;
+  $filename = file($filename)->basename;
+  $filename =~ s/\.dist$//;
+
+  my ($author, $path) = split /_/, $filename, 2;
+
+  my $dni = CPAN::DistnameInfo->new($path);
+
+  return $self->new({
+    name     => $dni->dist,
+    version  => $dni->version,
+    abstract => sprintf('the %s dist', $dni->dist),
+    archive_ext => $dni->extension,
+    cpan_author => $author,
+  });
 }
 
 sub _from_meta_file {
@@ -267,7 +291,7 @@ Module::Faker::Dist
 
 =head1 VERSION
 
-version 0.007
+version 0.008
 
 =head1 AUTHOR
 

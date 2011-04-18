@@ -22,6 +22,7 @@
       "runtime" : {
          "requires" : {
             "Archive::Any::Create" : 0,
+            "CPAN::DistnameInfo" : 0,
             "Carp" : 0,
             "File::Next" : 0,
             "File::Path" : 0,
@@ -29,8 +30,8 @@
             "Moose" : "0.33",
             "Moose::Util::TypeConstraints" : 0,
             "Parse::CPAN::Meta" : "1.4401",
+            "Path::Class" : 0,
             "Text::Template" : 0,
-            "YAML::Syck" : 0,
             "perl" : "v5.10.0"
          }
       },
@@ -47,7 +48,7 @@
          "url" : "git://git.codesimply.com/Module-Faker.git"
       }
    },
-   "version" : "0.007",
+   "version" : "0.008",
    "x_Dist_Zilla" : {
       "plugins" : [
          {

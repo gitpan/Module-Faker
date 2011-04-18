@@ -23,6 +23,7 @@ my %WriteMakefileArgs = (
   'NAME' => 'Module::Faker',
   'PREREQ_PM' => {
     'Archive::Any::Create' => '0',
+    'CPAN::DistnameInfo' => '0',
     'Carp' => '0',
     'File::Next' => '0',
     'File::Path' => '0',
@@ -30,10 +31,10 @@ my %WriteMakefileArgs = (
     'Moose' => '0.33',
     'Moose::Util::TypeConstraints' => '0',
     'Parse::CPAN::Meta' => '1.4401',
-    'Text::Template' => '0',
-    'YAML::Syck' => '0'
+    'Path::Class' => '0',
+    'Text::Template' => '0'
   },
-  'VERSION' => '0.007',
+  'VERSION' => '0.008',
   'test' => {
     'TESTS' => 't/*.t'
   }
