@@ -1,6 +1,6 @@
 package Module::Faker::Dist;
 BEGIN {
-  $Module::Faker::Dist::VERSION = '0.008';
+  $Module::Faker::Dist::VERSION = '0.009';
 }
 use Moose;
 use 5.10.0;
@@ -22,6 +22,12 @@ has version      => (is => 'ro', isa => 'Maybe[Str]', default => '0.01');
 has abstract     => (is => 'ro', isa => 'Str', default => 'a great new dist');
 has cpan_author  => (is => 'ro', isa => 'Maybe[Str]', default => 'LOCAL');
 has archive_ext  => (is => 'ro', isa => 'Str', default => 'tar.gz');
+has append       => (is => 'ro', isa => 'ArrayRef[HashRef]', default => sub {[]});
+
+sub append_for {
+  my ($self, $filename) = @_;
+  [ map { $_->{content} } grep { $filename eq $_->{file} } @{$self->append} ]
+}
 
 has archive_basename => (
   is   => 'ro',
@@ -90,6 +96,7 @@ sub modules {
     Module::Faker::Module->new({
       packages => $module{$_},
       filename => $_,
+      append   => $self->append_for($_)
     });
   } keys %module;
 
@@ -174,7 +181,17 @@ sub make_archive {
 
 sub files {
   my ($self) = @_;
-  return ($self->modules, $self->_extras, $self->_manifest_file);
+  my @files = ($self->modules, $self->_extras, $self->_manifest_file);
+  for my $file (@{$self->append}) {
+    next if(grep { $_->filename eq $file->{file} } @files);
+    push(@files,
+      $self->_file_class->new(
+        filename => $file->{file},
+        content  => '',
+        append   => $self->append_for($file->{file}),
+      ) );
+  }
+  return @files;
 }
 
 sub _file_class { 'Module::Faker::File' }
@@ -291,7 +308,7 @@ Module::Faker::Dist
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 AUTHOR
 

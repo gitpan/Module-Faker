@@ -1,24 +1,28 @@
-package Module::Faker::File;
+package Module::Faker::Appendix;
 BEGIN {
-  $Module::Faker::File::VERSION = '0.009';
+  $Module::Faker::Appendix::VERSION = '0.009';
 }
-use Moose;
-with 'Module::Faker::Appendix';
+use Moose::Role;
 
-has filename => (is => 'ro', isa => 'Str', required => 1);
-has content  => (is => 'ro', isa => 'Str', required => 1);
+has append => (
+  is => 'ro',
+  isa => 'ArrayRef',
+  default => sub {[]},
+);
 
-sub as_string { shift->content }
+around as_string => sub {
+  my ($orig, $self) = (shift, shift);
+  my $string = $self->$orig(@_);
+  $string .= join("\n", @{$self->append});
+};
 
-no Moose;
 1;
-
 __END__
 =pod
 
 =head1 NAME
 
-Module::Faker::File
+Module::Faker::Appendix
 
 =head1 VERSION
 

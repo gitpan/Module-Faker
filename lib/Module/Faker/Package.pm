@@ -1,6 +1,6 @@
 package Module::Faker::Package;
 BEGIN {
-  $Module::Faker::Package::VERSION = '0.008';
+  $Module::Faker::Package::VERSION = '0.009';
 }
 use Moose;
 
@@ -58,7 +58,7 @@ Module::Faker::Package
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 AUTHOR
 

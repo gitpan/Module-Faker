@@ -28,6 +28,7 @@
             "File::Path" : 0,
             "File::Temp" : 0,
             "Moose" : "0.33",
+            "Moose::Role" : 0,
             "Moose::Util::TypeConstraints" : 0,
             "Parse::CPAN::Meta" : "1.4401",
             "Path::Class" : 0,
@@ -48,7 +49,7 @@
          "url" : "git://git.codesimply.com/Module-Faker.git"
       }
    },
-   "version" : "0.008",
+   "version" : "0.009",
    "x_Dist_Zilla" : {
       "plugins" : [
          {
@@ -164,7 +165,7 @@
          {
             "class" : "Dist::Zilla::Plugin::Repository",
             "name" : "@RJBS/Repository",
-            "version" : "0.17"
+            "version" : "0.18"
          },
          {
             "class" : "Dist::Zilla::Plugin::Prereqs",

@@ -29,12 +29,13 @@ my %WriteMakefileArgs = (
     'File::Path' => '0',
     'File::Temp' => '0',
     'Moose' => '0.33',
+    'Moose::Role' => '0',
     'Moose::Util::TypeConstraints' => '0',
     'Parse::CPAN::Meta' => '1.4401',
     'Path::Class' => '0',
     'Text::Template' => '0'
   },
-  'VERSION' => '0.008',
+  'VERSION' => '0.009',
   'test' => {
     'TESTS' => 't/*.t'
   }

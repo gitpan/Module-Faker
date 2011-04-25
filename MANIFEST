@@ -6,6 +6,7 @@ META.yml
 Makefile.PL
 README
 dist.ini
+eg/Append.yml
 eg/Lacks-META.json
 eg/Mostly-Auto.yml
 eg/Provides-Inner-Sorted.yml
@@ -14,11 +15,13 @@ eg/RJBS-Dist.yml
 eg/RJBS_Another-Dist-1.24.tar.gz.dist
 eg/Simple-Prereq.yml
 lib/Module/Faker.pm
+lib/Module/Faker/Appendix.pm
 lib/Module/Faker/Dist.pm
 lib/Module/Faker/File.pm
 lib/Module/Faker/Heavy.pm
 lib/Module/Faker/Module.pm
 lib/Module/Faker/Package.pm
+t/append.t
 t/basic.t
 t/omit-file.t
 t/provide-order.t
