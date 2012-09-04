@@ -1,8 +1,8 @@
 use strict;
 use warnings;
 package Module::Faker::Heavy;
-BEGIN {
-  $Module::Faker::Heavy::VERSION = '0.009';
+{
+  $Module::Faker::Heavy::VERSION = '0.010';
 }
 
 use Carp ();
@@ -58,7 +58,7 @@ Module::Faker::Heavy
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 AUTHOR
 

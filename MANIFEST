@@ -6,6 +6,7 @@ META.yml
 Makefile.PL
 README
 dist.ini
+eg/Append-UTF8.json
 eg/Append.yml
 eg/Lacks-META.json
 eg/Mostly-Auto.yml
@@ -21,9 +22,13 @@ lib/Module/Faker/File.pm
 lib/Module/Faker/Heavy.pm
 lib/Module/Faker/Module.pm
 lib/Module/Faker/Package.pm
+t/00-compile.t
+t/000-report-versions-tiny.t
+t/append-utf8.t
 t/append.t
 t/basic.t
 t/omit-file.t
 t/provide-order.t
-t/release-pod-syntax.t
 t/requires.t
+xt/release/changes_has_content.t
+xt/release/pod-syntax.t

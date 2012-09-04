@@ -1,5 +1,9 @@
 Revision history for Module-Faker
 
+0.010     2012-09-03 21:38:01 America/New_York
+          encode append content to UTF-8 before appending it (thanks, Randy
+          Stauner!)
+
 0.009     2011-04-25 10:57:47 America/New_York
           allow content to be appended to arbitrary files (thanks, Moritz
           Onken!)

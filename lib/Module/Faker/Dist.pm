@@ -1,6 +1,6 @@
 package Module::Faker::Dist;
-BEGIN {
-  $Module::Faker::Dist::VERSION = '0.009';
+{
+  $Module::Faker::Dist::VERSION = '0.010';
 }
 use Moose;
 use 5.10.0;
@@ -16,6 +16,7 @@ use File::Temp ();
 use File::Path ();
 use Parse::CPAN::Meta 1.4401;
 use Path::Class;
+use Encode qw( encode_utf8 );
 
 has name         => (is => 'ro', isa => 'Str', required => 1);
 has version      => (is => 'ro', isa => 'Maybe[Str]', default => '0.01');
@@ -26,7 +27,12 @@ has append       => (is => 'ro', isa => 'ArrayRef[HashRef]', default => sub {[]}
 
 sub append_for {
   my ($self, $filename) = @_;
-  [ map { $_->{content} } grep { $filename eq $_->{file} } @{$self->append} ]
+  return [
+    # YAML and JSON should both be in utf8 (if not plain ascii)
+    map  { encode_utf8($_->{content}) }
+    grep { $filename eq $_->{file} }
+      @{ $self->append }
+  ];
 }
 
 has archive_basename => (
@@ -308,7 +314,7 @@ Module::Faker::Dist
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 AUTHOR
 

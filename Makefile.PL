@@ -2,42 +2,48 @@
 use strict;
 use warnings;
 
-BEGIN { require 5.10.0; }
+use 5.010000;
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'build fake dists for testing CPAN tools',
-  'AUTHOR' => 'Ricardo Signes <rjbs@cpan.org>',
-  'BUILD_REQUIRES' => {
-    'Test::More' => '0.96'
+  "ABSTRACT" => "build fake dists for testing CPAN tools",
+  "AUTHOR" => "Ricardo Signes <rjbs\@cpan.org>",
+  "BUILD_REQUIRES" => {
+    "Cwd" => 0,
+    "File::Find" => 0,
+    "Path::Class" => "0.06",
+    "Test::More" => "0.96"
   },
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31'
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
-  'DISTNAME' => 'Module-Faker',
-  'EXE_FILES' => [],
-  'LICENSE' => 'perl',
-  'NAME' => 'Module::Faker',
-  'PREREQ_PM' => {
-    'Archive::Any::Create' => '0',
-    'CPAN::DistnameInfo' => '0',
-    'Carp' => '0',
-    'File::Next' => '0',
-    'File::Path' => '0',
-    'File::Temp' => '0',
-    'Moose' => '0.33',
-    'Moose::Role' => '0',
-    'Moose::Util::TypeConstraints' => '0',
-    'Parse::CPAN::Meta' => '1.4401',
-    'Path::Class' => '0',
-    'Text::Template' => '0'
+  "DISTNAME" => "Module-Faker",
+  "EXE_FILES" => [],
+  "LICENSE" => "perl",
+  "NAME" => "Module::Faker",
+  "PREREQ_PM" => {
+    "Archive::Any::Create" => 0,
+    "CPAN::DistnameInfo" => 0,
+    "Carp" => 0,
+    "Encode" => 0,
+    "File::Next" => 0,
+    "File::Path" => 0,
+    "File::Temp" => 0,
+    "Moose" => "0.33",
+    "Moose::Role" => 0,
+    "Moose::Util::TypeConstraints" => 0,
+    "Parse::CPAN::Meta" => "1.4401",
+    "Path::Class" => 0,
+    "Text::Template" => 0,
+    "strict" => 0,
+    "warnings" => 0
   },
-  'VERSION' => '0.009',
-  'test' => {
-    'TESTS' => 't/*.t'
+  "VERSION" => "0.010",
+  "test" => {
+    "TESTS" => "t/*.t"
   }
 );
 

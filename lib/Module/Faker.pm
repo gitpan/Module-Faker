@@ -1,6 +1,6 @@
 package Module::Faker;
-BEGIN {
-  $Module::Faker::VERSION = '0.009';
+{
+  $Module::Faker::VERSION = '0.010';
 }
 use 5.008;
 use Moose 0.33;
@@ -59,7 +59,7 @@ Module::Faker - build fake dists for testing CPAN tools
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 SYNOPSIS
 
