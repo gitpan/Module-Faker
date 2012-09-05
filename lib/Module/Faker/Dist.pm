@@ -1,9 +1,10 @@
 package Module::Faker::Dist;
 {
-  $Module::Faker::Dist::VERSION = '0.010';
+  $Module::Faker::Dist::VERSION = '0.011';
 }
 use Moose;
 use 5.10.0;
+# ABSTRACT: a fake CPAN distribution
 
 use Module::Faker::File;
 use Module::Faker::Heavy;
@@ -310,11 +311,11 @@ __END__
 
 =head1 NAME
 
-Module::Faker::Dist
+Module::Faker::Dist - a fake CPAN distribution
 
 =head1 VERSION
 
-version 0.010
+version 0.011
 
 =head1 AUTHOR
 
