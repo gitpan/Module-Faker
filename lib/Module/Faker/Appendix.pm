@@ -1,6 +1,6 @@
 package Module::Faker::Appendix;
 {
-  $Module::Faker::Appendix::VERSION = '0.011';
+  $Module::Faker::Appendix::VERSION = '0.012';
 }
 use Moose::Role;
 # ABSTRACT: a thing that appends
@@ -20,6 +20,7 @@ around as_string => sub {
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -28,7 +29,7 @@ Module::Faker::Appendix - a thing that appends
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 AUTHOR
 
@@ -42,4 +43,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

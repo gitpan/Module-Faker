@@ -1,6 +1,6 @@
 package Module::Faker::Dist;
 {
-  $Module::Faker::Dist::VERSION = '0.011';
+  $Module::Faker::Dist::VERSION = '0.012';
 }
 use Moose;
 use 5.10.0;
@@ -25,6 +25,7 @@ has abstract     => (is => 'ro', isa => 'Str', default => 'a great new dist');
 has cpan_author  => (is => 'ro', isa => 'Maybe[Str]', default => 'LOCAL');
 has archive_ext  => (is => 'ro', isa => 'Str', default => 'tar.gz');
 has append       => (is => 'ro', isa => 'ArrayRef[HashRef]', default => sub {[]});
+has mtime        => (is => 'ro', isa => 'Int', predicate => 'has_mtime');
 
 sub append_for {
   my ($self, $filename) = @_;
@@ -182,7 +183,7 @@ sub make_archive {
 
   $self->_mk_container_path($archive_filename);
   $archive->write_file($archive_filename);
-
+  utime time, $self->mtime, $archive_filename if $self->has_mtime;
   return $archive_filename;
 }
 
@@ -307,6 +308,7 @@ sub _from_meta_file {
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -315,7 +317,7 @@ Module::Faker::Dist - a fake CPAN distribution
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 AUTHOR
 
@@ -329,4 +331,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

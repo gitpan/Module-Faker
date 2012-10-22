@@ -1,6 +1,6 @@
 package Module::Faker::File;
 {
-  $Module::Faker::File::VERSION = '0.011';
+  $Module::Faker::File::VERSION = '0.012';
 }
 use Moose;
 with 'Module::Faker::Appendix';
@@ -15,6 +15,7 @@ no Moose;
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -23,7 +24,7 @@ Module::Faker::File - a fake file in a fake dist
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 AUTHOR
 
@@ -37,4 +38,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

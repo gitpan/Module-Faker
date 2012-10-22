@@ -1,6 +1,6 @@
 package Module::Faker;
 {
-  $Module::Faker::VERSION = '0.011';
+  $Module::Faker::VERSION = '0.012';
 }
 use 5.008;
 use Moose 0.33;
@@ -51,6 +51,7 @@ no Moose;
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -59,7 +60,7 @@ Module::Faker - build fake dists for testing CPAN tools
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 SYNOPSIS
 
@@ -110,4 +111,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

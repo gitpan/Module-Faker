@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Module::Faker::Heavy;
 {
-  $Module::Faker::Heavy::VERSION = '0.011';
+  $Module::Faker::Heavy::VERSION = '0.012';
 }
 # ABSTRACT: where the fake sausage gets made
 
@@ -49,8 +49,6 @@ sub _render {
 
 1;
 
-
-
 =pod
 
 =head1 NAME
@@ -59,7 +57,7 @@ Module::Faker::Heavy - where the fake sausage gets made
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 AUTHOR
 
@@ -73,7 +71,6 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
 
 __DATA__
 __META.yml__
