@@ -1,6 +1,6 @@
 package Module::Faker::Dist;
 {
-  $Module::Faker::Dist::VERSION = '0.012';
+  $Module::Faker::Dist::VERSION = '0.013';
 }
 use Moose;
 use 5.10.0;
@@ -317,7 +317,7 @@ Module::Faker::Dist - a fake CPAN distribution
 
 =head1 VERSION
 
-version 0.012
+version 0.013
 
 =head1 AUTHOR
 
