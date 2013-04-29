@@ -1,9 +1,9 @@
 package Module::Faker::Dist;
 {
-  $Module::Faker::Dist::VERSION = '0.013';
+  $Module::Faker::Dist::VERSION = '0.014';
 }
 use Moose;
-use 5.10.0;
+
 # ABSTRACT: a fake CPAN distribution
 
 use Module::Faker::File;
@@ -27,6 +27,8 @@ has archive_ext  => (is => 'ro', isa => 'Str', default => 'tar.gz');
 has append       => (is => 'ro', isa => 'ArrayRef[HashRef]', default => sub {[]});
 has mtime        => (is => 'ro', isa => 'Int', predicate => 'has_mtime');
 
+sub __dor { defined $_[0] ? $_[0] : $_[1] }
+
 sub append_for {
   my ($self, $filename) = @_;
   return [
@@ -43,7 +45,7 @@ has archive_basename => (
   lazy => 1,
   default => sub {
     my ($self) = @_;
-    return sprintf '%s-%s', $self->name, $self->version // 'undef';
+    return sprintf '%s-%s', $self->name, __dor($self->version, 'undef');
   },
 );
 
@@ -317,7 +319,7 @@ Module::Faker::Dist - a fake CPAN distribution
 
 =head1 VERSION
 
-version 0.013
+version 0.014
 
 =head1 AUTHOR
 

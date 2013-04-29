@@ -40,7 +40,7 @@
             "Parse::CPAN::Meta" : "1.4401",
             "Path::Class" : "0",
             "Text::Template" : "0",
-            "perl" : "v5.10.0",
+            "perl" : "5.008",
             "strict" : "0",
             "warnings" : "0"
          }
@@ -63,7 +63,7 @@
          "web" : "https://github.com/rjbs/module-faker"
       }
    },
-   "version" : "0.013",
+   "version" : "0.014",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.017011"
