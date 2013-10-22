@@ -1,6 +1,6 @@
 package Module::Faker::Package;
 {
-  $Module::Faker::Package::VERSION = '0.014';
+  $Module::Faker::Package::VERSION = '0.015';
 }
 use Moose;
 # ABSTRACT: a faked package in a faked module
@@ -26,27 +26,6 @@ has in_file  => (
 subtype 'Module::Faker::Type::Packages'
   => as 'ArrayRef[Module::Faker::Package]';
 
-coerce 'Module::Faker::Type::Packages'
-  => from 'HashRef'
-  => via  {
-    my ($href) = @_;
-    my @packages;
-
-    my @pkg_names = do {
-      no warnings 'uninitialized';
-      sort { $href->{$a}{X_Module_Faker}{order} <=> $href->{$b}{X_Module_Faker}{order} } keys %$href;
-    };
-
-    for my $name (@pkg_names) {
-      push @packages, __PACKAGE__->new({
-        name    => $name,
-        version => $href->{$name}{version},
-        in_file => $href->{$name}{file},
-      });
-    }
-    return \@packages;
-  };
-
 no Moose;
 1;
 
@@ -54,13 +33,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Module::Faker::Package - a faked package in a faked module
 
 =head1 VERSION
 
-version 0.014
+version 0.015
 
 =head1 AUTHOR
 

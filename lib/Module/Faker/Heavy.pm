@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Module::Faker::Heavy;
 {
-  $Module::Faker::Heavy::VERSION = '0.014';
+  $Module::Faker::Heavy::VERSION = '0.015';
 }
 # ABSTRACT: where the fake sausage gets made
 
@@ -51,13 +51,15 @@ sub _render {
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Module::Faker::Heavy - where the fake sausage gets made
 
 =head1 VERSION
 
-version 0.014
+version 0.015
 
 =head1 AUTHOR
 
@@ -100,9 +102,9 @@ WriteMakefile(
   VERSION  => "{{ $dist->version }}",
   ABSTRACT => '{{ my $abs = $dist->abstract; $abs =~ s/'/\'/g; $abs }}',
   PREREQ_PM => { {{
-if (my %requires = $dist->requires) {
+if (my %requires = $dist->_flat_prereqs ) {
   $OUT .= sprintf "\n    '%s' => '%s',", $_,
-    (defined $requires{$_} ?  $requires{$_} : 0) for keys %requires;
+    (defined $requires{$_} ?  $requires{$_} : 0) for sort keys %requires;
 }
 return;
   }}

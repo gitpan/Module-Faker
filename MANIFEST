@@ -15,6 +15,7 @@ eg/Provides-Inner.yml
 eg/RJBS-Dist.yml
 eg/RJBS_Another-Dist-1.24.tar.gz.dist
 eg/Simple-Prereq.yml
+eg/V2-Prereq.yml
 lib/Module/Faker.pm
 lib/Module/Faker/Appendix.pm
 lib/Module/Faker/Dist.pm
@@ -22,11 +23,11 @@ lib/Module/Faker/File.pm
 lib/Module/Faker/Heavy.pm
 lib/Module/Faker/Module.pm
 lib/Module/Faker/Package.pm
-t/00-compile.t
 t/000-report-versions-tiny.t
 t/append-utf8.t
 t/append.t
 t/basic.t
+t/meta-files.t
 t/omit-file.t
 t/provide-order.t
 t/requires.t

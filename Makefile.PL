@@ -22,6 +22,8 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "Archive::Any::Create" => 0,
     "CPAN::DistnameInfo" => 0,
+    "CPAN::Meta" => 0,
+    "CPAN::Meta::Requirements" => 0,
     "Carp" => 0,
     "Encode" => 0,
     "File::Next" => 0,
@@ -38,11 +40,10 @@ my %WriteMakefileArgs = (
   },
   "TEST_REQUIRES" => {
     "Cwd" => 0,
-    "File::Find" => 0,
     "Path::Class" => "0.06",
     "Test::More" => "0.96"
   },
-  "VERSION" => "0.014",
+  "VERSION" => "0.015",
   "test" => {
     "TESTS" => "t/*.t"
   }
