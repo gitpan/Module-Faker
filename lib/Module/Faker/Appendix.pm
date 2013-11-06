@@ -1,6 +1,6 @@
 package Module::Faker::Appendix;
 {
-  $Module::Faker::Appendix::VERSION = '0.015';
+  $Module::Faker::Appendix::VERSION = '0.016';
 }
 use Moose::Role;
 # ABSTRACT: a thing that appends
@@ -23,15 +23,13 @@ __END__
 
 =pod
 
-=encoding UTF-8
-
 =head1 NAME
 
 Module::Faker::Appendix - a thing that appends
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 AUTHOR
 

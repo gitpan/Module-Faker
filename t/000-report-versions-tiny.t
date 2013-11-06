@@ -50,7 +50,7 @@ sub pmver {
 
 eval { $v .= pmver('Archive::Any::Create','any version') };
 eval { $v .= pmver('CPAN::DistnameInfo','any version') };
-eval { $v .= pmver('CPAN::Meta','any version') };
+eval { $v .= pmver('CPAN::Meta','2.130880') };
 eval { $v .= pmver('CPAN::Meta::Requirements','any version') };
 eval { $v .= pmver('Carp','any version') };
 eval { $v .= pmver('Cwd','any version') };

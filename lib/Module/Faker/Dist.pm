@@ -1,6 +1,6 @@
 package Module::Faker::Dist;
 {
-  $Module::Faker::Dist::VERSION = '0.015';
+  $Module::Faker::Dist::VERSION = '0.016';
 }
 use Moose;
 
@@ -13,7 +13,7 @@ use Module::Faker::Module;
 
 use Archive::Any::Create;
 use CPAN::DistnameInfo;
-use CPAN::Meta;
+use CPAN::Meta 2.130880; # github issue #9
 use CPAN::Meta::Requirements;
 use File::Temp ();
 use File::Path ();
@@ -94,7 +94,7 @@ sub __dist_to_pkg { my $str = shift; $str =~ s/-/::/g; return $str; }
 sub __pkg_to_file { my $str = shift; $str =~ s{::}{/}g; return "lib/$str.pm"; }
 
 # This is stupid, but copes with MakeMaker wanting to have a module name as its
-# NAME paramter.  Ugh! -- rjbs, 2008-03-13
+# NAME parameter.  Ugh! -- rjbs, 2008-03-13
 sub _pkgy_name {
   my $name = shift->name;
   $name =~ s/-/::/;
@@ -422,15 +422,13 @@ __END__
 
 =pod
 
-=encoding UTF-8
-
 =head1 NAME
 
 Module::Faker::Dist - a fake CPAN distribution
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 AUTHOR
 
