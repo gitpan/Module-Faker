@@ -1,9 +1,7 @@
 package Module::Faker::Package;
-{
-  $Module::Faker::Package::VERSION = '0.016';
-}
-use Moose;
 # ABSTRACT: a faked package in a faked module
+$Module::Faker::Package::VERSION = '0.017';
+use Moose;
 
 use Moose::Util::TypeConstraints;
 
@@ -33,13 +31,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Module::Faker::Package - a faked package in a faked module
 
 =head1 VERSION
 
-version 0.016
+version 0.017
 
 =head1 AUTHOR
 

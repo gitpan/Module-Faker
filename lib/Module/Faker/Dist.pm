@@ -1,10 +1,8 @@
 package Module::Faker::Dist;
-{
-  $Module::Faker::Dist::VERSION = '0.016';
-}
+# ABSTRACT: a fake CPAN distribution
+$Module::Faker::Dist::VERSION = '0.017';
 use Moose;
 
-# ABSTRACT: a fake CPAN distribution
 
 use Module::Faker::File;
 use Module::Faker::Heavy;
@@ -97,7 +95,7 @@ sub __pkg_to_file { my $str = shift; $str =~ s{::}{/}g; return "lib/$str.pm"; }
 # NAME parameter.  Ugh! -- rjbs, 2008-03-13
 sub _pkgy_name {
   my $name = shift->name;
-  $name =~ s/-/::/;
+  $name =~ s/-/::/g;
 
   return $name;
 }
@@ -422,13 +420,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Module::Faker::Dist - a fake CPAN distribution
 
 =head1 VERSION
 
-version 0.016
+version 0.017
 
 =head1 AUTHOR
 

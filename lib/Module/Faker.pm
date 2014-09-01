@@ -1,15 +1,49 @@
 package Module::Faker;
-{
-  $Module::Faker::VERSION = '0.016';
-}
+# ABSTRACT: build fake dists for testing CPAN tools
+$Module::Faker::VERSION = '0.017';
 use 5.008;
 use Moose 0.33;
-# ABSTRACT: build fake dists for testing CPAN tools
 
 use Module::Faker::Dist;
 
 use File::Next ();
 
+#pod =head1 SYNOPSIS
+#pod
+#pod   Module::Faker->make_fakes({
+#pod     source => './dir-of-specs',
+#pod     dest   => './will-contain-tarballs',
+#pod   });
+#pod
+#pod =head2 DESCRIPTION
+#pod
+#pod Module::Faker is a tool for building fake CPAN modules and, perhaps more
+#pod importantly, fake CPAN distributions.  These are useful for running tools that
+#pod operate against CPAN distributions without having to use real CPAN
+#pod distributions.  This is much more useful when testing an entire CPAN instance,
+#pod rather than a single distribution, for which see L<CPAN::Faker|CPAN::Faker>.
+#pod
+#pod =method make_fakes
+#pod
+#pod   Module::Faker->make_fakes(\%arg);
+#pod
+#pod This method creates a new Module::Faker and builds archives in its destination
+#pod directory for every dist-describing file in its source directory.  See the
+#pod L</new> method below.
+#pod
+#pod =method new
+#pod
+#pod   my $faker = Module::Faker->new(\%arg);
+#pod
+#pod This create the new Module::Faker.  All arguments may be accessed later by
+#pod methods of the same name.  Valid arguments are:
+#pod
+#pod   source - the directory in which to find source files
+#pod   dest   - the directory in which to construct dist archives
+#pod
+#pod   dist_class - the class used to fake dists; default: Module::Faker::Dist
+#pod
+#pod =cut
 
 has source => (is => 'ro', required => 1);
 has dest   => (is => 'ro', required => 1);
@@ -54,13 +88,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Module::Faker - build fake dists for testing CPAN tools
 
 =head1 VERSION
 
-version 0.016
+version 0.017
 
 =head1 SYNOPSIS
 

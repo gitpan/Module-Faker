@@ -1,10 +1,8 @@
 package Module::Faker::File;
-{
-  $Module::Faker::File::VERSION = '0.016';
-}
+# ABSTRACT: a fake file in a fake dist
+$Module::Faker::File::VERSION = '0.017';
 use Moose;
 with 'Module::Faker::Appendix';
-# ABSTRACT: a fake file in a fake dist
 
 has filename => (is => 'ro', isa => 'Str', required => 1);
 has content  => (is => 'ro', isa => 'Str', required => 1);
@@ -18,13 +16,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Module::Faker::File - a fake file in a fake dist
 
 =head1 VERSION
 
-version 0.016
+version 0.017
 
 =head1 AUTHOR
 

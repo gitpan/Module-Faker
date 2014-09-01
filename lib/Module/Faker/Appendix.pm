@@ -1,9 +1,7 @@
 package Module::Faker::Appendix;
-{
-  $Module::Faker::Appendix::VERSION = '0.016';
-}
-use Moose::Role;
 # ABSTRACT: a thing that appends
+$Module::Faker::Appendix::VERSION = '0.017';
+use Moose::Role;
 
 has append => (
   is => 'ro',
@@ -23,13 +21,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Module::Faker::Appendix - a thing that appends
 
 =head1 VERSION
 
-version 0.016
+version 0.017
 
 =head1 AUTHOR
 
